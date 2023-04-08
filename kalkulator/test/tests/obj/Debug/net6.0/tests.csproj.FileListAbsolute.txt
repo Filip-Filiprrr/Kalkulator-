@@ -1,0 +1,6 @@
+C:\Users\filip\kalkulator\test\tests\bin\Debug\net6.0\CoverletSourceRootsMapping
+C:\Users\filip\kalkulator\test\tests\obj\Debug\net6.0\tests.csproj.AssemblyReference.cache
+C:\Users\filip\kalkulator\test\tests\obj\Debug\net6.0\tests.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\filip\kalkulator\test\tests\obj\Debug\net6.0\tests.AssemblyInfoInputs.cache
+C:\Users\filip\kalkulator\test\tests\obj\Debug\net6.0\tests.AssemblyInfo.cs
+C:\Users\filip\kalkulator\test\tests\obj\Debug\net6.0\tests.csproj.CoreCompileInputs.cache
