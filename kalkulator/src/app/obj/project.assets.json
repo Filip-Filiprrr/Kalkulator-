@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\filip\\.nuget\\packages\\": {}
+    "/Users/filipwronski/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\filip\\kalkulator\\src\\app\\app.csproj",
+      "projectUniqueName": "/Users/filipwronski/kalkulator/src/app/app.csproj",
       "projectName": "app",
-      "projectPath": "C:\\Users\\filip\\kalkulator\\src\\app\\app.csproj",
-      "packagesPath": "C:\\Users\\filip\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\filip\\kalkulator\\src\\app\\obj\\",
+      "projectPath": "/Users/filipwronski/kalkulator/src/app/app.csproj",
+      "packagesPath": "/Users/filipwronski/.nuget/packages/",
+      "outputPath": "/Users/filipwronski/kalkulator/src/app/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\filip\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/filipwronski/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -49,7 +49,8 @@
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -58,7 +59,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.104\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.407/RuntimeIdentifierGraph.json"
       }
     }
   }

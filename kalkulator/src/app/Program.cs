@@ -14,9 +14,6 @@ internal class Program
         {
             a = kalkulator.Execute(dzialanie);
         }
-
-        Console.WriteLine(a);
     }
 
 }
-
