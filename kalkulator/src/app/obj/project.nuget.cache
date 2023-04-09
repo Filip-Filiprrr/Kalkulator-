@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gbgjeF9gT7+bqLngojqF1KyUiRDaS3/semoyLALITnEwqDIGQ0v8/lUu2eKDnKlWL4MUpjm1RJN/QMTUDbN/5A==",
+  "dgSpecHash": "1kqjiaadGv1oV0OpgFuluit0ylRRpNSijLA5zrZ3P4mAs7D7lD+mqBrNXiUYvBuGJ6rQCLD46pyBj6/tuE5oEA==",
   "success": true,
-  "projectFilePath": "/Users/filipwronski/kalkulator/src/app/app.csproj",
+  "projectFilePath": "/Users/filipwronski/Kalkulator/src/app/app.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

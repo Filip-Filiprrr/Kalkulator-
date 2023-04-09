@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/filipwronski/kalkulator/src/app/app.csproj": {}
+    "/Users/filipwronski/Kalkulator/src/app/app.csproj": {}
   },
   "projects": {
-    "/Users/filipwronski/kalkulator/src/app/app.csproj": {
+    "/Users/filipwronski/Kalkulator/src/app/app.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/filipwronski/kalkulator/src/app/app.csproj",
+        "projectUniqueName": "/Users/filipwronski/Kalkulator/src/app/app.csproj",
         "projectName": "app",
-        "projectPath": "/Users/filipwronski/kalkulator/src/app/app.csproj",
+        "projectPath": "/Users/filipwronski/Kalkulator/src/app/app.csproj",
         "packagesPath": "/Users/filipwronski/.nuget/packages/",
-        "outputPath": "/Users/filipwronski/kalkulator/src/app/obj/",
+        "outputPath": "/Users/filipwronski/Kalkulator/src/app/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/filipwronski/.nuget/NuGet/NuGet.Config"

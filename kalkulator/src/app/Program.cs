@@ -15,5 +15,4 @@ internal class Program
             a = kalkulator.Execute(dzialanie);
         }
     }
-
 }

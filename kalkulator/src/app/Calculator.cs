@@ -6,59 +6,69 @@ namespace app
         private static readonly int[] liczby = new int[10];
         public double Execute(string exp)
         {
-            int a = 0, left, right, wynik;
-
-            return 0;
-
-            for (int i = 0; i < exp.Length; i++)
+            if (exp != null)
             {
-                liczby[i] = exp[i];
 
-                if (exp[i].ToString() == znaki[a] && i > 1)
+                int a = 0, left, right, wynik;
+
+                for (int i = 0; i < exp.Length; i++)
                 {
-                    switch (exp[i].ToString())
+                    liczby[i] = exp[i];
+
+                    if (exp[i].ToString() == znaki[a])
                     {
-                        case "*":
-                            left = liczby[i - 1];
-                            right = liczby[i + 1];
-                            wynik = left * right;
-                            System.Console.WriteLine(wynik);
-                            break;
+                        switch (exp[i].ToString())
+                        {
+                            case "*":
+                                left = liczby[i - 1];
+                                right = liczby[i + 1];
+                                wynik = left * right;
+                                System.Console.WriteLine(wynik);
+                                break;
 
-                        case "/":
-                            left = liczby[i - 1];
-                            right = liczby[i + 1];
-                            wynik = left / right;
-                            System.Console.WriteLine(wynik);
-                            break;
+                            case "/":
+                                left = liczby[i - 1];
+                                right = liczby[i + 1];
+                                wynik = left / right;
+                                System.Console.WriteLine(wynik);
+                                break;
 
-                        case "+":
-                            left = liczby[i - 1];
-                            right = liczby[i + 1];
-                            wynik = left + right;
-                            System.Console.WriteLine(wynik);
-                            break;
+                            case "+":
+                                left = liczby[i - 1];
+                                right = liczby[i + 1];
+                                wynik = left + right;
+                                System.Console.WriteLine(wynik);
+                                break;
 
-                        case "-":
-                            left = liczby[i - 1];
-                            right = liczby[i + 1];
-                            wynik = left - right;
-                            System.Console.WriteLine(wynik);
-                            break;
-                    }
-                }
-
-                if (exp.Length - 1 == i)
-                {
-                    a++;
-                    i = 0;
-
-                    if (a == 4)
-                    {
+                            case "-":
+                                left = liczby[i - 1];
+                                right = liczby[i + 1];
+                                wynik = left - right;
+                                System.Console.WriteLine(wynik);
+                                break;
+                        }
+                    }else{
                         return 0;
                     }
-                }
 
+                    if (exp.Length - 1 == i)
+                    {
+                        a++;
+                        i = 0;
+
+                        if (a == 4)
+                        {
+                            return 0;
+                        }
+                    }
+
+
+
+                }
+            }
+            else
+            {
+                return 0;
             }
         }
 
