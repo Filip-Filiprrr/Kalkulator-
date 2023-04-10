@@ -29,7 +29,7 @@ namespace app
 
             if (i - 1 > 0)
             {
-                sleft = exp.Substring(0, i - 1);
+                sleft = exp.Substring(0, i - 2);
             }
 
             if (i + 2 < exp.Length - 1)
