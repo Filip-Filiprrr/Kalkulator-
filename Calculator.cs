@@ -4,16 +4,18 @@ namespace app
     {
         private static readonly char[] znaki = new char[] { '*', '/', '+', '-' };
 
+        public int j;
 
         public double Execute(string exp)
         {
             double total = 0;
-            for (int i = 0; i < exp.Length; i++)
+            for (int i = 0; i < znaki.Length; i++)
             {
-                (double, bool) wynik = Calculate(exp, i);
-                if (wynik.Item2)
+                (double, int, bool) wynik = Calculate(exp, i);
+                
+                if (wynik.Item3)
                 {
-                    exp = SubString(exp, wynik.Item1, i);
+                    exp = SubString(exp, wynik.Item1, wynik.Item2);
                     total += wynik.Item1;
                     i=0;
                 }
@@ -23,18 +25,18 @@ namespace app
 
         }
 
-        private string SubString(string exp, double wynik, int i)
+        private string SubString(string exp, double wynik, int j)
         {
             string sleft = "", sright = "";
 
-            if (i - 1 > 0)
+            if (j - 1 > 0)
             {
-                sleft = exp.Substring(0, i - 2);
+                sleft = exp.Substring(0, j - 1);
             }
 
-            if (i + 2 < exp.Length - 1)
+            if (j + 2 < exp.Length - 1)
             {
-                sright = exp.Substring(i + 2, exp.Length - i - 2);
+                sright = exp.Substring(j + 2, exp.Length - j - 2);
             }
 
             exp = sleft + wynik.ToString() + sright;
@@ -45,44 +47,43 @@ namespace app
 
         }
 
-        private (double, bool) Calculate(string exp, int i)
+        private (double, int, bool) Calculate(string exp, int i)
         {
 
             double left, right;
 
-            for (int j = 0; j < znaki.Length; j++)
+            for (int j = 0; j < exp.Length; j++)
             {
 
-                if (exp[i] == znaki[j])
+                if (exp[j] == znaki[i])
                 {
-                    left = Double.Parse(exp[i - 1].ToString());
-                    right = Double.Parse(exp[i + 1].ToString());
+                    left = Double.Parse(exp[j - 1].ToString());
+                    right = Double.Parse(exp[j + 1].ToString());
 
-                    switch (exp[i].ToString())
+                    switch (exp[j].ToString())
                     {
                         case "*":
 
-                            return (left * right, true);
+                            return (left * right, j, true);
 
                         case "/":
 
-                            return (left / right, true);
+                            return (left / right, j, true);
 
                         case "+":
 
-                            return (left + right, true);
+                            return (left + right, j, true);
 
                         case "-":
 
-                            return (left - right, true);
+                            return (left - right, j, true);
 
 
                     }
                 }
             }
-
-            return (0, false);
-
+            
+            return (0, j, false);
         }
     }
 }
