@@ -36,23 +36,25 @@ namespace app
 
             if (j + 2 < exp.Length - 1)
             {
-                sright = exp.Substring(j + R, exp.Length - j - R);
+                sright = exp.Substring(j + R + 1, exp.Length - j - R - 1);
             }
 
 
 
-            if (isLeftMinus(sleft) && isWynikMinus(wynik))
-            {
-                sleft = sleft.Remove(sleft.Length - 1) + "+";
+            // if (isLeftMinus(sleft) && isWynikMinus(wynik))
+            // {
+            //     sleft = sleft.Remove(sleft.Length - 1) + "+";
 
-            }
+            // }
 
-            if(isLeftPlus(sleft))
-            {
-                sleft = sleft.Remove(sleft.Length - 1);
-            }
+            // if(isLeftPlus(sleft))
+            // {
+            //     sleft = sleft.Remove(sleft.Length - 1);
+            // }
 
-            exp = sleft + wynik.ToString() + sright;
+            (string, double) wyliczone = RemoveMinus(sleft, wynik);
+
+            exp = wyliczone.Item1 + wyliczone.Item2.ToString() + sright;
 
             System.Console.WriteLine(exp);
 
@@ -204,13 +206,27 @@ namespace app
             return false;
         }
 
-        public bool isLeftMinus(string f)
+        public (string, double) RemoveMinus(string sleft, double wynik)
         {
-            if (f == "")
+
+            if (sleft == "")
             {
-                return false;
+                return (sleft, wynik);
             }
-            if (f[f.Length - 1].ToString() == "-")
+
+            if (IsMinus(sleft[sleft.Length - 1]) && IsMinus(wynik.ToString()[0]))
+            {
+                sleft = sleft.Remove(sleft.Length - 1) + "+";
+                wynik = wynik * -1;
+                return (sleft, wynik);
+            }
+
+            return (sleft, wynik);
+        }
+
+        public bool IsMinus(char c)
+        {
+            if (c.ToString() == "-")
             {
                 return true;
             }
@@ -218,28 +234,42 @@ namespace app
             return false;
         }
 
-        public bool isLeftPlus(string f)
-        {
-            if (f == "")
-            {
-                return false;
-            }
-            if (f[f.Length - 1].ToString() == "+")
-            {
-                return true;
-            }
+        // public bool isLeftMinus(string f)
+        // {
+        //     if (f == "")
+        //     {
+        //         return false;
+        //     }
+        //     if (f[f.Length - 1].ToString() == "-")
+        //     {
+        //         return true;
+        //     }
 
-            return false;
-        }
+        //     return false;
+        // }
 
-        public bool isWynikMinus(double wynik)
-        {
-            if (wynik < 0)
-            {
-                return true;
-            }
+        // public bool isLeftPlus(string f)
+        // {
+        //     if (f == "")
+        //     {
+        //         return false;
+        //     }
+        //     if (f[f.Length - 1].ToString() == "+")
+        //     {
+        //         return true;
+        //     }
 
-            return false;
-        }
+        //     return false;
+        // }
+
+        // public bool isWynikMinus(double wynik)
+        // {
+        //     if (wynik < 0)
+        //     {
+        //         return true;
+        //     }
+
+        //     return false;
+        // }
     }
 }
