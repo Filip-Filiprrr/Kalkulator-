@@ -9,6 +9,9 @@ namespace app
         public double Execute(string exp)
         {
             double total = 0;
+
+            //tu metoda do nawiasow 
+
             for (int i = 0; i < znaki.Length; i++)
             {
                 (double, int, bool, int, int) wynik = Calculate(exp, i);
@@ -16,7 +19,7 @@ namespace app
                 if (wynik.Item3)
                 {
                     exp = SubString(exp, wynik.Item1, wynik.Item2, wynik.Item4, wynik.Item5);
-                    total += wynik.Item1;
+                    total = wynik.Item1;
                     i = 0;
                 }
             }
@@ -29,32 +32,20 @@ namespace app
         {
             string sleft = "", sright = "";
 
-            if (j - 1 > 0)
+            if (j - L > 0)
             {
                 sleft = exp.Substring(0, j - L);
             }
 
-            if (j + 2 < exp.Length - 1)
+            int startIndexRight = j + R + 1;
+
+            if (startIndexRight < exp.Length - 1)
             {
-                sright = exp.Substring(j + R + 1, exp.Length - j - R - 1);
+                sright = exp.Substring(startIndexRight, exp.Length - startIndexRight);
             }
 
 
-
-            // if (isLeftMinus(sleft) && isWynikMinus(wynik))
-            // {
-            //     sleft = sleft.Remove(sleft.Length - 1) + "+";
-
-            // }
-
-            // if(isLeftPlus(sleft))
-            // {
-            //     sleft = sleft.Remove(sleft.Length - 1);
-            // }
-
-            (string, double) wyliczone = RemoveMinus(sleft, wynik);
-
-            exp = wyliczone.Item1 + wyliczone.Item2.ToString() + sright;
+            exp = sleft + wynik.ToString() + sright;
 
             System.Console.WriteLine(exp);
 
@@ -71,21 +62,15 @@ namespace app
             for (int j = 0; j < exp.Length; j++)
             {
 
-                if (exp[j] == znaki[i] && j >= 1)
+                if (exp[j] == znaki[i])
                 {
+            
                     (double, int) left = NumbersToLeft(exp, j - 1);
-                    (double, int) right = NumbersToRight(exp, j + 1);
+                    (double, int) right = NumbersToLeft(exp, j + 1);
+                    
 
                     L = left.Item1.ToString().Length;
                     R = right.Item1.ToString().Length;
-
-                    (int, double, string) minus = NegativeNumberLeft(j, left.Item1, exp);
-                    left.Item1 = minus.Item2;
-
-                    if (left.Item1 < 0)
-                    {
-                        R++;
-                    }
 
                     switch (exp[j].ToString())
                     {
@@ -112,7 +97,7 @@ namespace app
             return (0, j, false, L, R);
         }
 
-        public (double, int) NumbersToLeft(string exp, int startIndex)
+        private (double, int) NumbersToLeft(string exp, int startIndex)
         {
             string N = "";
 
@@ -120,7 +105,7 @@ namespace app
 
             for (; i >= 0; i--)
             {
-                if (!isMarkLeft(exp[i]))
+                if (!isMark(exp[i]))
                 {
                     N += exp[i];
                 }
@@ -137,19 +122,9 @@ namespace app
             return (double.Parse(reversedStr!), i);
         }
 
-        public bool isMarkLeft(char c)
-        {
-            for (int i = 0; i < znaki.Length; i++)
-            {
-                if (znaki[i] == c)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
 
-        public (double, int) NumbersToRight(string exp, int startIndex)
+
+        private (double, int) NumbersToRight(string exp, int startIndex)
         {
             string M = "";
 
@@ -157,7 +132,7 @@ namespace app
 
             for (; i < exp.Length; i++)
             {
-                if (!isMarkRight(exp[i]))
+                if (!isMark(exp[i]))
                 {
                     M += exp[i];
                 }
@@ -171,7 +146,7 @@ namespace app
             return (double.Parse(M2!), i);
         }
 
-        public bool isMarkRight(char d)
+        private bool isMark(char d)
         {
             for (int i = 0; i < znaki.Length; i++)
             {
@@ -182,94 +157,7 @@ namespace app
             }
             return false;
         }
-
-        public (int, double, string) NegativeNumberLeft(int znak, double left, string exp)
-        {
-            if (znak - left.ToString().Length - 1 >= 0)
-                if (isMinus(exp[znak - left.ToString().Length - 1]))
-                {
-                    left = Double.Parse("-" + left.ToString());
-                }
-
-            return (znak, left, exp);
-
-        }
-
-        public bool isMinus(char e)
-        {
-
-            if (e.ToString() == "-")
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        public (string, double) RemoveMinus(string sleft, double wynik)
-        {
-
-            if (sleft == "")
-            {
-                return (sleft, wynik);
-            }
-
-            if (IsMinus(sleft[sleft.Length - 1]) && IsMinus(wynik.ToString()[0]))
-            {
-                sleft = sleft.Remove(sleft.Length - 1) + "+";
-                wynik = wynik * -1;
-                return (sleft, wynik);
-            }
-
-            return (sleft, wynik);
-        }
-
-        public bool IsMinus(char c)
-        {
-            if (c.ToString() == "-")
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        // public bool isLeftMinus(string f)
-        // {
-        //     if (f == "")
-        //     {
-        //         return false;
-        //     }
-        //     if (f[f.Length - 1].ToString() == "-")
-        //     {
-        //         return true;
-        //     }
-
-        //     return false;
-        // }
-
-        // public bool isLeftPlus(string f)
-        // {
-        //     if (f == "")
-        //     {
-        //         return false;
-        //     }
-        //     if (f[f.Length - 1].ToString() == "+")
-        //     {
-        //         return true;
-        //     }
-
-        //     return false;
-        // }
-
-        // public bool isWynikMinus(double wynik)
-        // {
-        //     if (wynik < 0)
-        //     {
-        //         return true;
-        //     }
-
-        //     return false;
-        // }
     }
+
+
 }
