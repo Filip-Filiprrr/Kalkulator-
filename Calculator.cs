@@ -8,9 +8,37 @@ namespace app
 
         public double Execute(string exp)
         {
-            double total = 0;
+            string current = exp;
+            do
+            {
+                (int start, int lenght, bool hasNext) = Nawiasy(current);
+                
+                string v;
+                
+                if (!hasNext)
+                {
+                    v = current;
+                }
+                else
+                {
+                    v = current.Substring(start + 1, lenght - 1);
+                }
+                
+                double simple = ExecuteisSimple(v);
 
-            //tu metoda do nawiasow 
+                if (!hasNext || (hasNext && start == 0))
+                {
+                    return simple;
+                }
+
+                current = current.Substring(0, start) + simple.ToString() + current.Substring(lenght + 2, current.Length - lenght - 2);
+
+            }
+            while (true);
+        }
+        private double ExecuteisSimple(string exp)
+        {
+            double total = 0;
 
             for (int i = 0; i < znaki.Length; i++)
             {
@@ -64,10 +92,10 @@ namespace app
 
                 if (exp[j] == znaki[i])
                 {
-            
+
                     (double, int) left = NumbersToLeft(exp, j - 1);
-                    (double, int) right = NumbersToLeft(exp, j + 1);
-                    
+                    (double, int) right = NumbersToRight(exp, j + 1);
+
 
                     L = left.Item1.ToString().Length;
                     R = right.Item1.ToString().Length;
@@ -157,7 +185,99 @@ namespace app
             }
             return false;
         }
+
+        private (int, int, bool) Nawiasy(string exp)
+        {
+
+            int startIndex = 0, endIndex = 0;
+
+            for (int i = 0; i < exp.Length; i++)
+            {
+                if (NawiasLewy(exp[i]))
+                {
+                    startIndex = i;
+                }
+
+                if (NawiasPrawy(exp[i]))
+                {
+                    endIndex = i;
+
+                    return (startIndex, endIndex - startIndex, true);
+                }
+            }
+
+            return (0, exp.Length, false);
+
+        }
+
+        private string TworzenieDzialania(int startIndex, int endIndex, string exp)
+        {
+            if (startIndex != 0 && endIndex != 0)
+            {
+                string dzialanieNawias = exp[startIndex] + "";
+
+                for (int i = startIndex + 1; i <= endIndex; i++)
+                {
+                    dzialanieNawias = dzialanieNawias + exp[i];
+                }
+
+                double wynik = Execute(dzialanieNawias);
+
+                return wynik.ToString();
+            }
+            else
+            {
+                return exp;
+            }
+        }
+
+        private bool NawiasLewy(char exp)
+        {
+            char d = '(';
+
+            if (exp == d)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool NawiasPrawy(char exp)
+        {
+            if (exp == ')')
+            {
+                return true;
+            }
+            return false;
+        }
+
     }
 
-
 }
+
+// public string ResztaDzialania(string exp, int dlugoscDzialanieNawias)
+// {
+//     int startIndex = exp[dlugoscDzialanieNawias + 2];
+//     int endIndex = exp[exp.Length];
+//     string reszta = startIndex + "";
+
+//     if(startIndex < endIndex)
+//     {
+//     for (int i = startIndex; i < endIndex; i++ )
+//     {
+//         reszta = reszta + exp[i];
+//     }
+
+//     return reszta;
+//     }
+
+//     if(startIndex > endIndex)
+//     {
+//     for (int i = startIndex; i < endIndex; i++ )
+//     {
+//         reszta = reszta + exp[i];
+//     }
+
+//     return reszta;
+//     }
+// }
